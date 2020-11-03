@@ -30,7 +30,7 @@ def apply_mask(darray, sftlf_file, realm):
        """
 
     dset = xr.open_dataset(sftlf_file)
-
+    assert realm in ['land','ocean'], """Valid realms are 'land' or 'ocean'"""
     if realm == 'land':
         masked_darray = darray.where(dset['sftlf'].data < 50)
     else:
@@ -75,7 +75,7 @@ def main(inargs):
     
     clim = dset['pr'].groupby('time.season').mean('time', keep_attrs=True)
     clim = convert_pr_units(clim)
-    
+
     if inargs.mask:
         sftlf_file, realm = inargs.mask
         clim = apply_mask(clim, sftlf_file, realm)
