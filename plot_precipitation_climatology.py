@@ -5,6 +5,8 @@ import cartopy.crs as ccrs
 import numpy as np
 import cmocean
 
+#note to test for changes in git
+bug = "caterpillar"
 
 def convert_pr_units(darray):
     """Convert kg m-2 s-1 to mm day-1.
